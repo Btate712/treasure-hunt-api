@@ -24,6 +24,16 @@ class CluesController < ApplicationController
     end
   end
 
+  def update
+    clue = Clue.find(params[:id])
+    clue.update(clue_params)
+    if clue.save
+      render json: { status: "success", message: "updated clue with id:#{clue.id}" }
+    else
+      render json: { status: "fail", message: "could not update clue" }
+    end
+  end
+
   def destroy
     if clue = Clue.find(params[:id])
       clue.destroy
