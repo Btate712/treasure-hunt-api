@@ -21,6 +21,25 @@ class UsersController < ApplicationController
         }
   end
 
+  def update
+    user = User.find(params[:id])
+    user.update(user_params)
+    if user.save
+      render json: { status: "success", message: "updated user with id:#{user.id}" }
+    else
+      render json: { status: "fail", message: "could not update user" }
+    end
+  end
+
+  def destroy
+    if user = User.find(params[:id])
+      user.destroy
+      render json: { status: "success", message: "user destroyed" }
+    else
+      render json: { status: "fail", message: "could not find user" }
+    end
+  end
+
   private
 
   def authenticate(name, password)

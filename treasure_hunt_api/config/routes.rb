@@ -4,5 +4,5 @@ Rails.application.routes.draw do
    post 'auth/login', to: 'users#login'
    get 'test', to: 'users#test'
 
-   resources :clues, :hunts
+   resources :clues, :hunts, :images, :hunt_users
 end
